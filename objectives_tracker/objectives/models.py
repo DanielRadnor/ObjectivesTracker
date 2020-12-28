@@ -2,22 +2,37 @@ from django.db import models
 
 class Property(models.Model):
     name = models.CharField(max_length=30, unique=True)
-    addresss = models.CharField(max_length=100, unique=True)
+    address = models.CharField(max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
 
 class Category(models.Model):
     name = models.CharField(max_length=30, unique=True)
     description = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
+
 class Department(models.Model):
     name = models.CharField(max_length=30, unique=True)
+
+    def __str__(self):
+        return self.name
 
 class Person(models.Model):
     name = models.CharField(max_length=30, unique=True)
     department = models.ForeignKey(Department, null=True, related_name='people', on_delete=models.SET_NULL)
 
+    def __str__(self):
+        return self.name
+
 class Status(models.Model):
     status = models.CharField(max_length=30, unique=True)
     description = models.CharField(max_length=30, unique=True)
+
+    def __str__(self):
+        return self.name
 
 class Task(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -31,3 +46,6 @@ class Task(models.Model):
     completed_at = models.DateTimeField(null=True)
     created_by = models.ForeignKey(Person, null=True, related_name='tasts', on_delete=models.SET_NULL)
     updated_by = models.ForeignKey(Person, null=True, related_name='+', on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.name

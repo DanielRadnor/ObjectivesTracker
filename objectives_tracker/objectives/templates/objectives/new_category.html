@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New Category</title>
+  </head>
+  <body>
+    <h1>Add New Category</h1>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_name">Category Name</label>
+          <input type="text" class="form-control" id="id_name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="id_description">Description</label>
+          <textarea class="form-control" id="id_description" name="description" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Create</button>
+      </form>
+
+  </body>
+</html>

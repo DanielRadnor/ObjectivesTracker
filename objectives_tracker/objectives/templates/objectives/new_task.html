@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New Task</title>
+  </head>
+  <body>
+    <h1>Add New Task</h1>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="id_name">Task Name</label>
+          <input type="text" class="form-control" id="id_name" name="name">
+        </div>
+        <div class="form-group">
+          <label for="id_category">Category</label>
+          <!input type="text" class="form-control" id="id_category" name="category"!>
+          <select class="form-control" id="id_category" name="category">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id_person">Person Responsible</label>
+          <!input type="text" class="form-control" id="id_person" name="person"!>
+          <select class="form-control" id="id_person" name="person">
+            {% for person in people %}
+                <option value="{{ person.id }}">{{ person.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id_quadrant">Quadrant</label>
+          <!input type="text" class="form-control" id="id_quadrant" name="quadrant"!>
+          <select class="form-control" id="id_quadrant" name="quadrant">
+            {% for quadrant in quadrant_list %}
+                <option value="{{ quadrant }}">{{ quadrant }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id_status">Task Status</label>
+          <!input type="text" class="form-control" id="id_status" name="status"!>
+          <select class="form-control" id="id_status" name="status">
+            {% for status in status_list %}
+                <option value="{{ status }}">{{ status }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="id_notes">Notes</label>
+          <textarea class="form-control" id="id_notes" name="notes" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Create</button>
+      </form>
+
+  </body>
+</html>

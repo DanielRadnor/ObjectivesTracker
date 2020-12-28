@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Categories</title>
+  </head>
+  <body>
+    <h1>Categories</h1>
+
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a class="ml-2" href="{% url 'objectives-new-category'%}">Create a new Category</a>
+        </small>
+    </div>
+
+    {% for category in categories %}
+      {{ category.name }} <br>
+    {% endfor %}
+
+  </body>
+</html>

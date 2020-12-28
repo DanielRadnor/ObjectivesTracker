@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Statuses</title>
+  </head>
+  <body>
+    <h1>Statuses</h1>
+
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a class="ml-2" href="{% url 'objectives-new-status'%}">Create a new Status</a>
+        </small>
+    </div>
+
+    {% for status in statuses %}
+      {{ status.status }} <br>
+    {% endfor %}
+
+  </body>
+</html>

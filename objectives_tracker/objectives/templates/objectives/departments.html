@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Departments</title>
+  </head>
+  <body>
+    <h1>Departments</h1>
+
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a class="ml-2" href="{% url 'objectives-new-department'%}">Create a new Department</a>
+        </small>
+    </div>
+
+    {% for department in departments %}
+      {{ department.name }} <br>
+    {% endfor %}
+
+  </body>
+</html>

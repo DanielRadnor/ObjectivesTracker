@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tasks</title>
+  </head>
+  <body>
+    <h1>Tasks</h1>
+
+    <div class="border-top pt-3">
+        <small class="text-muted">
+            <a class="ml-2" href="{% url 'objectives-new-task'%}">Create a new Task</a>
+        </small>
+    </div>
+
+    {% for task in tasks %}
+      {{ task.name }} <br>
+    {% endfor %}
+
+  </body>
+</html>

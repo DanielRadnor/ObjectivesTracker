@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Properties</title>
+  </head>
+  <body>
+    <h1>Properties</h1>
+
+        <div class="border-top pt-3">
+            <small class="text-muted">
+                <a class="ml-2" href="{% url 'objectives-new-property'%}">Create a new Property</a>
+            </small>
+        </div>
+
+    {% for property in properties %}
+      Name: {{ property.name }} <br> Address:  {{ property.address }}<br>
+    {% endfor %}
+
+  </body>
+</html>

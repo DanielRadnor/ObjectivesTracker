@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tasks</title>
+  </head>
+  <body>
+    <h1>Tasks</h1>
+
+    {% for task in tasks %}
+      {{ task.name }} <br>
+    {% endfor %}
+
+    <h1>Properties</h1>
+    {% for property in properties %}
+        {{ property.name }}: {{ property.address }}
+        <h3>{{ my_variable }} and I love it!</h3>
+    {% endfor %}
+
+  </body>
+</html>
