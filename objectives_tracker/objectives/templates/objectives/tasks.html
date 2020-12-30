@@ -1,3 +1,40 @@
+{% extends 'objectives/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+      <h2>All Tasks</h2>
+      <p>
+        <a class="btn btn-primary" href="{% url 'objectives-new-task'%}">Create New Task</a>
+      </p>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Category</th>
+            <th>Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for task in tasks %}
+             <tr>
+              <td>{{ task.name }}</td>
+              <td>{{ task.category }}</td>
+              <td>{{ task.status }}</td>
+              <td>
+                <a class="btn btn-info" href="{% url 'objectives-update-task' task.id %}">Update</a>
+                <a class="btn btn-danger" href="{% url 'objectives-delete-task' task.id %}">Delete</a>
+              </td>
+             </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+{% endblock content %}
+
+<!--
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,3 +58,4 @@
 
   </body>
 </html>
+-->

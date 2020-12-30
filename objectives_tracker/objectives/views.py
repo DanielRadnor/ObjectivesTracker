@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.contrib import messages
 from .models import Property
 from .forms import PropertyForm
 from .models import Category
@@ -255,6 +256,7 @@ def new_task(request):
         form = TaskForm(request.POST)
         if form.is_valid():
             form.save()
+            messages.success(request, "New task successfully created!")
             return redirect('objectives-tasks')
 
     '''
@@ -293,6 +295,7 @@ def update_task(request, pk):
         form = TaskForm(request.POST,instance=task)
         if form.is_valid():
             form.save()
+            messages.success(request, "Task successfully updated!")
             return redirect('objectives-tasks')
 
     context = {
@@ -307,6 +310,7 @@ def delete_task(request, pk):
 
     if request.method == 'POST':
         task.delete()
+        messages.success(request, "Task successfully deleted!")
         return redirect('objectives-tasks')
 
     context = {
