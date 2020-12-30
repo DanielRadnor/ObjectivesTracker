@@ -16,8 +16,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+from objectives import views as objectives_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('objectives.urls')),
     path('objectives/', include('objectives.urls'))
 ]

@@ -15,6 +15,7 @@
 
     {% for category in categories %}
       {{ category.name }} <br>
+      <a class="btn" href="{% url 'objectives-update-category' category.id %}">Update</a> <br>
     {% endfor %}
 
   </body>

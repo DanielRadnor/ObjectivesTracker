@@ -15,6 +15,7 @@
 
     {% for department in departments %}
       {{ department.name }} <br>
+      <a class="btn" href="{% url 'objectives-update-department' department.id %}">Update</a> <br>
     {% endfor %}
 
   </body>

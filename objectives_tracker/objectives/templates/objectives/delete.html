@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Delete</title>
+  </head>
+  <body>
+    <h1>Are you sure you want to delete {{ item }}?</h1>
+
+    <form action="{% url 'objectives-delete-task' item.id %}" method="POST">
+        {% csrf_token %}
+        <a href="{% url 'objectives-tasks' %}">Cancel</a>
+        <input type="submit" name="Confirm">
+    </form>
+  </body>
+</html>

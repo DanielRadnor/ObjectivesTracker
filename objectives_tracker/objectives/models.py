@@ -32,7 +32,7 @@ class Status(models.Model):
     description = models.CharField(max_length=30, unique=True)
 
     def __str__(self):
-        return self.name
+        return self.status
 
 class Task(models.Model):
     name = models.CharField(max_length=50, unique=True)

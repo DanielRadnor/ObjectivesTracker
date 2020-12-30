@@ -14,7 +14,8 @@
     </div>
 
     {% for status in statuses %}
-      {{ status.status }} <br>
+      {{ status.status }}
+      <a class="btn" href="{% url 'objectives-update-status' status.id %}">Update</a> <br>
     {% endfor %}
 
   </body>

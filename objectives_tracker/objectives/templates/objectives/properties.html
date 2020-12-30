@@ -15,6 +15,7 @@
 
     {% for property in properties %}
       Name: {{ property.name }} <br> Address:  {{ property.address }}<br>
+      <a class="btn" href="{% url 'objectives-update-property' property.id %}">Update</a> <br>
     {% endfor %}
 
   </body>

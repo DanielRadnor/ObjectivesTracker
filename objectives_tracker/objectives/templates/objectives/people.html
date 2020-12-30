@@ -14,7 +14,8 @@
     </div>
 
     {% for person in people %}
-      {{ person.name }} <br>
+      Name: {{ person.name }}, Dept: {{ person.department }}  <br>
+      <a class="btn" href="{% url 'objectives-update-person' person.id %}">Update</a> <br>
     {% endfor %}
 
   </body>

@@ -9,14 +9,7 @@
 
       <form method="post">
         {% csrf_token %}
-        <div class="form-group">
-          <label for="id_name">Category Name</label>
-          <input type="text" class="form-control" id="id_name" name="name">
-        </div>
-        <div class="form-group">
-          <label for="id_description">Description</label>
-          <textarea class="form-control" id="id_description" name="description" rows="5"></textarea>
-        </div>
+        {{ form.as_p }}
         <button type="submit" class="btn btn-success">Create</button>
       </form>
 
