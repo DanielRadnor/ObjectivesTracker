@@ -22,7 +22,10 @@
         <tr>
          <td>{{ status.status }}</td>
          <td>{{ status.description }}</td>
-         <td><a class="btn btn-info" href="{% url 'objectives-update-status' status.id %}">Edit</a></td>
+         <td>
+           <a class="btn btn-info" href="{% url 'objectives-update-status' status.id %}">Edit</a>
+           <a class="btn btn-danger" href="{% url 'objectives-delete-status' status.id %}">Delete</a>
+         </td>
         </tr>
       {% endfor %}
     </table>

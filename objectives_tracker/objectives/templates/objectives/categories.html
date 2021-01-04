@@ -22,7 +22,10 @@
         <tr>
          <td>{{ category.name }}</td>
          <td>{{ category.description }}</td>
-         <td><a class="btn btn-info" href="{% url 'objectives-update-category' category.id %}">Edit</a></td>
+         <td>
+           <a class="btn btn-info" href="{% url 'objectives-update-category' category.id %}">Edit</a>
+           <a class="btn btn-danger" href="{% url 'objectives-delete-category' category.id %}">Delete</a>
+         </td>
         </tr>
       {% endfor %}
     </table>

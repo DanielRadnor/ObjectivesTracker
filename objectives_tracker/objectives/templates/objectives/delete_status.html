@@ -1,0 +1,15 @@
+{% extends 'objectives/base.html' %}
+
+{% block content %}
+
+    <h1>Are you sure you want to delete {{ item }}?</h1>
+
+    <h2>status.id</h2>
+
+    <form action="{% url 'objectives-delete-status' item.id %}" method="POST">
+        {% csrf_token %}
+        <a href="{% url 'objectives-statuses' %}">Cancel</a>
+        <input type="submit" name="Confirm">
+    </form>
+
+{% endblock content %}

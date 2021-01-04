@@ -23,6 +23,7 @@
          <td>{{ property.name }}</td>
          <td>{{ property.address }}</td>
          <td><a class="btn btn-info" href="{% url 'objectives-update-property' property.id %}">Edit</a></td>
+         <td><a class="btn btn-danger" href="{% url 'objectives-delete-property' property.id %}">Delete</a></td>
         </tr>
       {% endfor %}
     </table>

@@ -1,0 +1,13 @@
+{% extends 'objectives/base.html' %}
+
+{% block content %}
+
+    <h1>Are you sure you want to delete {{ item }}?</h1>
+
+    <form action="{% url 'objectives-delete-category' item.id %}" method="POST">
+        {% csrf_token %}
+        <a href="{% url 'objectives-categories' %}">Cancel</a>
+        <input type="submit" name="Confirm">
+    </form>
+
+{% endblock content %}

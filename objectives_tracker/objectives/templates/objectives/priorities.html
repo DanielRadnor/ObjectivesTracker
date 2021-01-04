@@ -22,7 +22,10 @@
         <tr>
          <td>{{ priority.name }}</td>
          <td>{{ priority.description }}</td>
-         <td><a class="btn btn-info" href="{% url 'objectives-update-priority' priority.id %}">Edit</a></td>
+         <td>
+           <a class="btn btn-info" href="{% url 'objectives-update-priority' priority.id %}">Edit</a>
+           <a class="btn btn-danger" href="{% url 'objectives-delete-priority' priority.id %}">Delete</a>
+         </td>
         </tr>
       {% endfor %}
     </table>

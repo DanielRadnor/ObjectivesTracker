@@ -114,6 +114,21 @@ def update_property(request, pk):
 
     return render(request, 'objectives/update_property.html', context)
 
+def delete_property(request, pk):
+
+    property = Property.objects.get(id=pk)
+
+    if request.method == 'POST':
+        property.delete()
+        messages.success(request, "Property successfully deleted!")
+        return redirect('objectives-properties')
+
+    context = {
+        'item': property
+    }
+
+    return render(request, 'objectives/delete_property.html', context)
+
 def categories(request):
 
     context = {
@@ -154,6 +169,21 @@ def update_category(request, pk):
     }
 
     return render(request, 'objectives/update_category.html', context)
+
+def delete_category(request, pk):
+
+    category = Category.objects.get(id=pk)
+
+    if request.method == 'POST':
+        category.delete()
+        messages.success(request, "Category successfully deleted!")
+        return redirect('objectives-categories')
+
+    context = {
+        'item': category
+    }
+
+    return render(request, 'objectives/delete_category.html', context)
 
 def departments(request):
 
@@ -197,6 +227,21 @@ def update_department(request, pk):
     }
 
     return render(request, 'objectives/update_department.html', context)
+
+def delete_department(request, pk):
+
+    department = Department.objects.get(id=pk)
+
+    if request.method == 'POST':
+        department.delete()
+        messages.success(request, "Department successfully deleted!")
+        return redirect('objectives-departments')
+
+    context = {
+        'item': department
+    }
+
+    return render(request, 'objectives/delete_department.html', context)
 
 def people(request):
 
@@ -252,6 +297,21 @@ def update_person(request, pk):
 
     return render(request, 'objectives/update_person.html', context)
 
+def delete_person(request, pk):
+
+    person = Person.objects.get(id=pk)
+
+    if request.method == 'POST':
+        person.delete()
+        messages.success(request, "Person successfully deleted!")
+        return redirect('objectives-people')
+
+    context = {
+        'item': person
+    }
+
+    return render(request, 'objectives/delete_person.html', context)
+
 def priorities(request):
 
     context = {
@@ -292,6 +352,21 @@ def update_priority(request, pk):
 
     return render(request, 'objectives/update_priority.html', context)
 
+def delete_priority(request, pk):
+
+    priority = Priority.objects.get(id=pk)
+
+    if request.method == 'POST':
+        priority.delete()
+        messages.success(request, "Priority successfully deleted!")
+        return redirect('objectives-proprities')
+
+    context = {
+        'item': priority
+    }
+
+    return render(request, 'objectives/delete_priority.html', context)
+
 def statuses(request):
     context = {
         'statuses': Status.objects.all()
@@ -327,6 +402,26 @@ def update_status(request, pk):
     }
 
     return render(request, 'objectives/update_status.html', context)
+
+def delete_status(request, pk):
+
+    print("request:", request)
+    print("pk:", pk)
+
+    status = Status.objects.get(id=pk)
+
+    if request.method == 'POST':
+        status.delete()
+        messages.success(request, "Status successfully deleted!")
+        return redirect('objectives-statuses')
+
+    context = {
+        'item': status
+    }
+
+    print("context:", context)
+
+    return render(request, 'objectives/delete_status.html', context)
 
 def tasks(request):
 
@@ -419,4 +514,4 @@ def delete_task(request, pk):
         'item': task
     }
 
-    return render(request, 'objectives/delete.html', context)
+    return render(request, 'objectives/delete_task.html', context)
