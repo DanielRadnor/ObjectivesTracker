@@ -1,21 +1,66 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Tasks</title>
-  </head>
-  <body>
+{% extends 'objectives/base.html' %}
+
+{% block content %}
+
+  <div class="container">
+
     <h1>Tasks</h1>
 
-    {% for task in tasks %}
-      {{ task.name }} <br>
-    {% endfor %}
+    <table class="table table-hover">
+        <tr>
+          <th>Total Tasks</th>
+          <td>{{ total_tasks }}</td>
+          <td><a class="btn btn-info" href="{% url 'objectives-tasks' %}">Show</a></td>
+        </tr>
+        <tr>
+         <th>Total Priority #1 Tasks</th>
+         <td>{{ total_tasks_p1 }}</td>
+         <td><a class="btn btn-info" href="tasks/?priority=1">Show</a></td>
+        </tr>
+        <tr>
+         <th>Total Priority #2 Tasks</th>
+         <td>{{ total_tasks_p2 }}</td>
+         <td><a class="btn btn-info" href="tasks/?priority=2">Show</a></td>
+        </tr>
+        <tr>
+         <th>Total Priority #3 Tasks</th>
+         <td>{{ total_tasks_p3 }}</td>
+         <td><a class="btn btn-info" href="tasks/?priority=3">Show</a></td>
+        </tr>
+        <tr>
+         <th>Total Priority #4 Tasks</th>
+         <td>{{ total_tasks_p4 }}</td>
+         <td><a class="btn btn-info" href="tasks/?priority=4">Show</a></td>
+        </tr>
+      </table>
+
+      <!--
+        <h2>All Tasks</h2>
+
+        {% for task in tasks %}
+          {{ task.name }} <br>
+        {% endfor %}
+
+        <h1>All Properties</h1>
+        {% for property in properties %}
+            {{ property.name }}: {{ property.address }}<br>
+        {% endfor %}
+       -->
+
+  </div>
 
     <h1>Properties</h1>
-    {% for property in properties %}
-        {{ property.name }}: {{ property.address }}
-        <h3>{{ my_variable }} and I love it!</h3>
-    {% endfor %}
 
-  </body>
-</html>
+    <table class="table table-hover">
+        {% for property in properties %}
+            <tr>
+              <th>{{ property.name }}</th>
+              <td>{{ prop_task_dict|get_item:property.name }}</td>
+              <td><a class="btn btn-info" href="{% url 'objectives-tasks' %}">Show</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+
+  </div>
+
+{% endblock content %}

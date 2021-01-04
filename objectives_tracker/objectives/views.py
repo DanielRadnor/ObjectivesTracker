@@ -9,18 +9,67 @@ from .models import Department
 from .forms import DepartmentForm
 from .models import Person
 from .forms import PersonForm
+from .models import Priority
+from .forms import PriorityForm
 from .models import Status
 from .forms import StatusForm
 from .models import Task
 from .forms import TaskForm
+from .filters import TaskFilter
+
+from django.template.defaulttags import register
 
 def home(request):
 
+    tasks = Task.objects.all()
+
+    total_tasks = 0
+    total_tasks_p1 = 0
+    total_tasks_p2 = 0
+    total_tasks_p3 = 0
+    total_tasks_p4 = 0
+
+    for task in tasks:
+
+        total_tasks += 1
+        if task.priority.name == "1":
+            total_tasks_p1 += 1
+        elif task.priority.name == "2":
+            total_tasks_p2 += 1
+        elif task.priority.name == "3":
+            total_tasks_p3 += 1
+        else:
+            total_tasks_p4 += 1
+
+    properties = Property.objects.all()
+    prop_task_dict = {}
+    prop_task_count = 0
+
+    for property in properties:
+        prop_task_count = 0
+        prop_task_dict[property.name] = 0
+        for task in tasks:
+            if task.property == property:
+                prop_task_count += 1
+                prop_task_dict[property.name] = prop_task_count
+
+    @register.filter
+    def calculate_something(a, b):
+        return a + b
+
+    @register.filter
+    def get_item(dictionary, key):
+        return dictionary.get(key)
+
     context = {
-        'properties': Property.objects.all(),
-        'tasks': Task.objects.all(),
-        'my_list': ['a', 7, 'xyz', 1],
-        'my_variable': "This is my variable"
+        'properties': properties,
+        'tasks': tasks,
+        'total_tasks': total_tasks,
+        'total_tasks_p1': total_tasks_p1,
+        'total_tasks_p2': total_tasks_p2,
+        'total_tasks_p3': total_tasks_p3,
+        'total_tasks_p4': total_tasks_p4,
+        'prop_task_dict': prop_task_dict
     }
 
     return render(request, 'objectives/home.html', context)
@@ -108,8 +157,10 @@ def update_category(request, pk):
 
 def departments(request):
 
+    departments = Department.objects.all()
+
     context = {
-        'departments': Department.objects.all()
+        'departments': departments
     }
 
     return render(request, 'objectives/departments.html', context)
@@ -128,7 +179,7 @@ def new_department(request):
         'form': form
     }
 
-    return render(request, 'objectives/new_department.html')
+    return render(request, 'objectives/new_department.html',context)
 
 def update_department(request, pk):
 
@@ -182,7 +233,7 @@ def new_person(request):
 
     '''
 
-    return render(request, 'objectives/new_person.html', context)
+    #return render(request, 'objectives/new_person.html', context)
 
 def update_person(request, pk):
 
@@ -200,6 +251,46 @@ def update_person(request, pk):
     }
 
     return render(request, 'objectives/update_person.html', context)
+
+def priorities(request):
+
+    context = {
+        'priorities': Priority.objects.all()
+    }
+
+    return render(request, 'objectives/priorities.html', context)
+
+def new_priority(request):
+
+    form = PriorityForm()
+    if request.method == 'POST':
+        form = PriorityForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('objectives-priorities')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'objectives/new_priority.html', context)
+
+def update_priority(request, pk):
+
+    priority = Priority.objects.get(id=pk)
+    form = PriorityForm(instance=priority)
+
+    if request.method == 'POST':
+        form = PriorityForm(request.POST,instance=priority)
+        if form.is_valid():
+            form.save()
+            return redirect('objectives-priorities')
+
+    context = {
+        'form': form
+    }
+
+    return render(request, 'objectives/update_priority.html', context)
 
 def statuses(request):
     context = {
@@ -239,8 +330,19 @@ def update_status(request, pk):
 
 def tasks(request):
 
+    tasks = Task.objects.all()
+    people = Person.objects.all()
+    categories = Category.objects.all()
+
+    task_filter = TaskFilter(request.GET, queryset=tasks)
+
+    tasks = task_filter.qs
+
     context = {
-        'tasks': Task.objects.all()
+        'tasks': tasks,
+        'people': people,
+        'categories': categories,
+        'task_filter': task_filter
     }
 
     return render(request, 'objectives/tasks.html', context)

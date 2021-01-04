@@ -1,22 +1,32 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Statuses</title>
-  </head>
-  <body>
+{% extends 'objectives/base.html' %}
+
+{% block content %}
+
+  <div class="container">
+
     <h1>Statuses</h1>
 
     <div class="border-top pt-3">
-        <small class="text-muted">
-            <a class="ml-2" href="{% url 'objectives-new-status'%}">Create a new Status</a>
-        </small>
-    </div>
+      <small class="text-muted">
+          <a class="btn btn-primary" href="{% url 'objectives-new-status'%}">Create a new Status</a>
+      </small>
+    </div><br>
 
-    {% for status in statuses %}
-      {{ status.status }}
-      <a class="btn" href="{% url 'objectives-update-status' status.id %}">Update</a> <br>
-    {% endfor %}
+      <table class="table table-hover">
+      <tr>
+        <th>Status Name</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+      {% for status in statuses %}
+        <tr>
+         <td>{{ status.status }}</td>
+         <td>{{ status.description }}</td>
+         <td><a class="btn btn-info" href="{% url 'objectives-update-status' status.id %}">Edit</a></td>
+        </tr>
+      {% endfor %}
+    </table>
 
-  </body>
-</html>
+  </div>
+
+{% endblock content %}}

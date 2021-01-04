@@ -1,22 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Properties</title>
-  </head>
-  <body>
+{% extends 'objectives/base.html' %}
+
+{% block content %}
+
+  <div class="container">
+
     <h1>Properties</h1>
 
-        <div class="border-top pt-3">
-            <small class="text-muted">
-                <a class="ml-2" href="{% url 'objectives-new-property'%}">Create a new Property</a>
-            </small>
-        </div>
+    <div class="border-top pt-3">
+      <small class="text-muted">
+          <a class="btn btn-primary" href="{% url 'objectives-new-property'%}">Create a new Property</a>
+      </small>
+    </div><br>
 
-    {% for property in properties %}
-      Name: {{ property.name }} <br> Address:  {{ property.address }}<br>
-      <a class="btn" href="{% url 'objectives-update-property' property.id %}">Update</a> <br>
-    {% endfor %}
+      <table class="table table-hover">
+      <tr>
+        <th>Property Name</th>
+        <th>Address</th>
+        <th>Actions</th>
+      </tr>
+      {% for property in properties %}
+        <tr>
+         <td>{{ property.name }}</td>
+         <td>{{ property.address }}</td>
+         <td><a class="btn btn-info" href="{% url 'objectives-update-property' property.id %}">Edit</a></td>
+        </tr>
+      {% endfor %}
+    </table>
 
-  </body>
-</html>
+  </div>
+
+{% endblock content %}}
+

@@ -3,6 +3,7 @@ from .models import Property
 from .models import Category
 from .models import Department
 from .models import Person
+from .models import Priority
 from .models import Status
 from .models import Task
 
@@ -26,6 +27,11 @@ class PersonForm(ModelForm):
         model = Person
         fields = "__all__"
 
+class PriorityForm(ModelForm):
+    class Meta:
+        model = Priority
+        fields = "__all__"
+
 class StatusForm(ModelForm):
     class Meta:
         model = Status
@@ -38,4 +44,4 @@ class StatusForm(ModelForm):
 class TaskForm(ModelForm):
     class Meta:
         model = Task
-        fields = ['name', 'category', 'person', 'quadrant', 'status', 'notes']
+        fields = ['property', 'name', 'category', 'person', 'priority', 'status', 'notes']

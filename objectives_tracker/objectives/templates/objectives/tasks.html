@@ -4,24 +4,56 @@
 
     <div class="container">
       <h2>All Tasks</h2>
-      <p>
-        <a class="btn btn-primary" href="{% url 'objectives-new-task'%}">Create New Task</a>
-      </p>
+
+      <div class="row">
+          <div class="col">
+              <div class="card card-body">
+                  <form method="get">
+                      {{ task_filter.form }}
+                      <button class="btn btn-primary" type="submit">Search</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+
+      <div>
+          <br>
+          <p>
+              <a class="btn btn-primary" href="{% url 'objectives-new-task'%}">Create New Task</a>
+          </p>
+      </div>
+
       <table class="table table-hover">
         <thead>
           <tr>
+            <th>Property</th>
             <th>Task</th>
             <th>Category</th>
             <th>Status</th>
+            <th>Priority</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
           {% for task in tasks %}
              <tr>
+              <td>{{ task.property }}</td>
               <td>{{ task.name }}</td>
               <td>{{ task.category }}</td>
               <td>{{ task.status }}</td>
+              <td>
+                  {% if task.priority == "1" %}
+                    <div class="TaskPriority1">
+                  {% elif task.priority == "2" %}
+                    <div class="TaskPriority2">
+                  {% elif task.priority == "3" %}
+                    <div class="TaskPriority3">
+                  {% else %}
+                    <div class="TaskPriority4">
+                  {% endif %}
+                      {{ task.priority }}
+                    </div>
+              </td>
               <td>
                 <a class="btn btn-info" href="{% url 'objectives-update-task' task.id %}">Update</a>
                 <a class="btn btn-danger" href="{% url 'objectives-delete-task' task.id %}">Delete</a>

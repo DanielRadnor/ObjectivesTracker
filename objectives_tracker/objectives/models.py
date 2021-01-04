@@ -16,6 +16,7 @@ class Category(models.Model):
 
 class Department(models.Model):
     name = models.CharField(max_length=30, unique=True)
+    description = models.CharField(max_length=100, null=True, unique=False)
 
     def __str__(self):
         return self.name
@@ -23,6 +24,13 @@ class Department(models.Model):
 class Person(models.Model):
     name = models.CharField(max_length=30, unique=True)
     department = models.ForeignKey(Department, null=True, related_name='people', on_delete=models.SET_NULL)
+
+    def __str__(self):
+        return self.name
+
+class Priority(models.Model):
+    name = models.CharField(max_length=2, unique=True)
+    description = models.CharField(max_length=30, unique=True)
 
     def __str__(self):
         return self.name
@@ -36,9 +44,11 @@ class Status(models.Model):
 
 class Task(models.Model):
     name = models.CharField(max_length=50, unique=True)
+    property = models.ForeignKey(Property, null=True, related_name='tasks', on_delete=models.SET_NULL)
     category = models.ForeignKey(Category, null=True, related_name='tasks', on_delete=models.SET_NULL)
     person = models.ForeignKey(Person, null=True, related_name='tasks', on_delete=models.SET_NULL)
-    quadrant = models.IntegerField()
+    quadrant = models.IntegerField(null=True)
+    priority = models.ForeignKey(Priority, null=True, related_name='tasks', on_delete=models.SET_NULL)
     status = models.ForeignKey(Status, null=True, related_name= 'tasks', on_delete=models.SET_NULL)
     notes = models.CharField(max_length=200, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)

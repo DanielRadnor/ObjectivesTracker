@@ -1,17 +1,14 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Update Category</title>
-  </head>
-  <body>
+{% extends 'objectives/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
     <h1>Update Category</h1>
 
       <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ form|crispy }}
         <button type="submit" class="btn btn-success">Update</button>
       </form>
 
-  </body>
-</html>
+{% endblock content %}

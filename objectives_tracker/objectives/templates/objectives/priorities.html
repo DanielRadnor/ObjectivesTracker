@@ -1,0 +1,32 @@
+{% extends 'objectives/base.html' %}
+
+{% block content %}
+
+  <div class="container">
+
+    <h1>Priorities</h1>
+
+    <div class="border-top pt-3">
+      <small class="text-muted">
+          <a class="btn btn-primary" href="{% url 'objectives-new-person'%}">Create a new Priority</a>
+      </small>
+    </div><br>
+
+      <table class="table table-hover">
+      <tr>
+        <th>Priority</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+      {% for priority in priorities %}
+        <tr>
+         <td>{{ priority.name }}</td>
+         <td>{{ priority.description }}</td>
+         <td><a class="btn btn-info" href="{% url 'objectives-update-priority' priority.id %}">Edit</a></td>
+        </tr>
+      {% endfor %}
+    </table>
+
+  </div>
+
+{% endblock content %}}

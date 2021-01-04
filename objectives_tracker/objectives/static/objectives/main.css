@@ -82,3 +82,19 @@ a.article-title:hover {
 .account-heading {
   font-size: 2.5rem;
 }
+
+.TaskPriority1 {
+  color: #ff0000;
+}
+
+.TaskPriority2 {
+  color: #33ff9900;
+}
+
+.TaskPriority3 {
+  color: #3399ff;
+}
+
+.TaskPriority4 {
+  color: #666699;
+}
